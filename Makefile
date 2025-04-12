@@ -1,23 +1,13 @@
-CFLAGS=-O3 -std=c11 -fPIC -g
-CXXFLAGS=-O3 -std=c++17 -fPIC -g
-LD=g++
+# Simple Makefile for mergesort
 
+CXX = g++
+CXXFLAGS = -O2 -std=c++11
 
-all: mergesort_seq
+all: mergesort
 
-
-mergesort_seq: mergesort_seq.o
-	$(LD) $(LDFLAGS) mergesort_seq.o $(ARCHIVES) -o mergesort_seq
-
-
-bench: mergesort_seq
-	./queue.sh
+mergesort: mergesort.cpp
+	$(CXX) $(CXXFLAGS) -o mergesort mergesort.cpp
 
 clean:
-	-rm *.o
-	-rm mergesort_seq
+	rm -f mergesort
 
-distclean:
-	-rm *.sh.*
-
-.PHONY:  mergesort_seq
